@@ -25,11 +25,18 @@ app.post("/generate", async (req, res) => {
       return res.status(400).json({ error: "Se requieren 4 respuestas para generar la imagen" });
     }
 
-    const finalPrompt = `Crea una imagen motivacional basada en estos aspectos de bienestar: 
-      - Alimentación: ${respuestas[0]}
-      - Actividad física: ${respuestas[1]}
-      - Salud mental: ${respuestas[2]}
-      - Descanso: ${respuestas[3]}`;
+    const finalPrompt = `Crea una imagen digital **motivacional y armoniosa** que represente el bienestar en su máxima expresión. 
+Debe incluir a una persona radiante y saludable en un ambiente cálido y acogedor. 
+La imagen debe reflejar **energía positiva y equilibrio** con los siguientes elementos integrados de manera natural:
+
+- **Alimentación saludable** (${respuestas[0]}) representada con colores vibrantes y comida fresca en un plato bien presentado.
+- **Actividad física** (${respuestas[1]}) reflejada en una postura o movimiento dinámico que transmita vitalidad.
+- **Salud mental** (${respuestas[2]}) visualizada a través de una expresión de calma, naturaleza y equilibrio.
+- **Descanso reparador** (${respuestas[3]}) con una atmósfera relajante, luz suave y un ambiente acogedor.
+
+La imagen debe ser **armoniosa y estética**, con colores equilibrados y una composición fluida, evitando el desorden. 
+Debe reflejar **felicidad, paz y bienestar** en una sola imagen.`;
+
 
     console.log(`Generando imagen para: "${finalPrompt}"`);
 
