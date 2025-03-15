@@ -25,19 +25,23 @@ app.post("/generate", async (req, res) => {
       return res.status(400).json({ error: "Se requieren 4 respuestas para generar la imagen" });
     }
 
-    const finalPrompt = `Una ilustración digital inspiradora y motivacional que represente un estilo de vida equilibrado y feliz. 
-    La imagen debe mostrar un ambiente armonioso con colores suaves y naturales, reflejando **paz, bienestar y alegría**. 
-    
-    🎨 **Concepto**:
-    Se debe visualizar **una persona radiante y feliz** disfrutando de su bienestar, rodeada de un entorno positivo. 
-    Cada elemento debe integrarse de manera fluida en la escena para transmitir una sensación de plenitud.
-    
-    ✨ **Elementos Clave**:
-    - **Alimentación:** ${respuestas[0]} - Representado por una comida balanceada y apetitosa en la escena.
-    - **Actividad Física:** ${respuestas[1]} - Expresado a través de una postura activa y enérgica, como yoga, caminata o estiramientos.
-    - **Salud Mental:** ${respuestas[2]} - Reflejado con una expresión relajada y un fondo sereno que inspire calma.
-    - **Descanso:** ${respuestas[3]} - Sugiere una atmósfera acogedora y reparadora, con luz cálida y elementos que evocan tranquilidad.
-    
+    const finalPrompt = `✨ Ilustración digital de alta calidad que representa un **estilo de vida saludable y equilibrado** con una composición armoniosa y estéticamente agradable.
+
+🔹 **Escena principal:** Un individuo radiante, feliz y lleno de vitalidad en un entorno natural y acogedor.
+🔹 **Colores:** Tonos cálidos y relajantes que transmiten bienestar, sin elementos caóticos ni saturados.
+🔹 **Elementos integrados sutilmente según las respuestas del usuario:**
+   - 🍏 **Alimentación:** ${respuestas[0]} - Representado de manera realista, como una fruta fresca en la mano o en una mesa de desayuno soleada.
+   - 💪 **Ejercicio:** ${respuestas[1]} - La persona en la imagen muestra vitalidad y energía, con una postura segura y empoderada.
+   - 🧘‍♂️ **Salud Mental:** ${respuestas[2]} - Expresión facial relajada, con una sensación de calma y equilibrio en la escena.
+   - 😴 **Descanso:** ${respuestas[3]} - Sugiere un ambiente de paz, con luz cálida, un entorno fresco y una sensación de recuperación.
+
+🖌 **Estilo de la imagen:**  
+Debe parecer una pintura digital realista o ilustración inspiradora con un **único sujeto central**.  
+Evitar formas abstractas, imágenes deformadas o composiciones caóticas.
+
+🚀 **Resultado esperado:**  
+Una **imagen única y motivacional** que transmita paz, equilibrio y bienestar, con una persona feliz disfrutando de su vida saludable en un entorno positivo.`;
+
     🚀 **Requisitos Técnicos**:
     - **UNA SOLA IMAGEN**, sin collage ni elementos superpuestos.
     - **Colores cálidos y naturales**, evitando tonos caóticos.
