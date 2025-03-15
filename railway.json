@@ -1,8 +1,0 @@
-{
-    "build": {
-      "base": "node",
-      "commands": ["cd backend && npm install"]
-    },
-    "start": "npm start"
-  }
-  
