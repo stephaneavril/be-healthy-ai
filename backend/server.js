@@ -69,7 +69,11 @@ app.post("/generate", async (req, res) => {
   }
 });
 
-app.listen(port, "0.0.0.0", () => {
-  console.log(`🚀 Servidor corriendo en el puerto ${port}`);
+const port = process.env.PORT || 8080;
+const host = '0.0.0.0';  // <-- IMPORTANTE para que funcione en Railway
+
+app.listen(port, host, () => {
+    console.log(`🚀 Servidor corriendo en http://0.0.0.0:${port}`);
 });
+
 
