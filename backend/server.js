@@ -4,7 +4,6 @@ const cors = require("cors");
 const Replicate = require("replicate");
 
 const app = express();
-const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -69,11 +68,10 @@ app.post("/generate", async (req, res) => {
   }
 });
 
+// Configuración de puerto y host para Railway
 const port = process.env.PORT || 8080;
-const host = '0.0.0.0';  // <-- IMPORTANTE para que funcione en Railway
+const host = '0.0.0.0';  // <-- IMPORTANTE para Railway
 
 app.listen(port, host, () => {
-    console.log(`🚀 Servidor corriendo en http://0.0.0.0:${port}`);
+    console.log(`🚀 Servidor corriendo en http://${host}:${port}`);
 });
-
-
