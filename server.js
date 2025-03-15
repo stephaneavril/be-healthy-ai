@@ -25,34 +25,27 @@ app.post("/generate", async (req, res) => {
       return res.status(400).json({ error: "Se requieren 4 respuestas para generar la imagen" });
     }
 
-    const finalPrompt = `Ilustración digital que representa un estilo de vida saludable y equilibrado, con una composición armoniosa y estéticamente agradable.
+    const finalPrompt = `
+    Una ilustración digital realista que representa un estilo de vida saludable y equilibrado.
+    La imagen debe transmitir bienestar, motivación y alegría.
 
-    Escena principal: Un individuo radiante, feliz y lleno de vitalidad en un entorno natural y acogedor.
-    
-    Colores: Tonos cálidos y relajantes que transmiten bienestar.
-    
-    Elementos clave según las respuestas del usuario:
-    - Alimentación: ${respuestas[0]} - Representado de manera realista, como una fruta fresca en la mano o en una mesa de desayuno soleada.
-    - Ejercicio: ${respuestas[1]} - La persona en la imagen muestra vitalidad y energía, con una postura segura y empoderada.
-    - Salud Mental: ${respuestas[2]} - Expresión facial relajada, con una sensación de calma y equilibrio en la escena.
-    - Descanso: ${respuestas[3]} - Sugiere un ambiente de paz, con luz cálida y sensación de recuperación.
-    
-    Estilo de la imagen:
-    Debe parecer una pintura digital realista o ilustración inspiradora con un único sujeto central.
-    Evitar formas abstractas, imágenes deformadas o composiciones caóticas.
-    
-    Resultado esperado:
-    Una imagen única y motivacional que transmita paz, equilibrio y bienestar, con una persona feliz disfrutando de su vida saludable en un entorno positivo.`;
-    
-    **Requisitos Técnicos**:
-    - **UNA SOLA IMAGEN**, sin collage ni elementos superpuestos.
-    - **Colores cálidos y naturales**, evitando tonos caóticos.
-    - **Estética profesional y realista**, sin deformaciones.
-    - **Sensación de armonía**, evitando elementos dispersos o confusos.
-    
-    La imagen final debe evocar **motivación, bienestar y alegría**, ideal para inspirar a las personas a mejorar su calidad de vida.`;
-    
-    
+    **Características clave:**
+    - **Persona feliz y radiante** en un entorno natural armonioso.
+    - **Colores cálidos y relajantes** que transmitan paz y bienestar.
+    - **Elementos clave** basados en las respuestas del usuario:
+      - **Alimentación:** ${respuestas[0]} (ejemplo: frutas frescas sobre una mesa soleada).
+      - **Ejercicio:** ${respuestas[1]} (persona enérgica en movimiento).
+      - **Salud Mental:** ${respuestas[2]} (expresión de calma y equilibrio).
+      - **Descanso:** ${respuestas[3]} (ambiente sereno y reconfortante).
+
+    **Requisitos Técnicos:**
+    - UNA SOLA IMAGEN clara y estética (NO collage).
+    - Sin deformaciones ni elementos extraños.
+    - Estilo ilustración realista y motivacional.
+    - Composición armoniosa y bien equilibrada.
+
+    La imagen debe inspirar a las personas a mejorar su bienestar y disfrutar de una vida sana y equilibrada.
+    `;
 
     console.log(`Generando imagen para: "${finalPrompt}"`);
 
