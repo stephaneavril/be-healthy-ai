@@ -1,21 +1,28 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const Replicate = require("replicate");
+const path = require("path");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-// Sirve archivos estáticos de la carpeta "frontend"
-app.use(express.static("frontend"));
+// ✅ Sirve archivos estáticos desde "frontend"
+app.use(express.static(path.join(__dirname, "../frontend")));
 
-const replicate = new Replicate({
-  auth: process.env.REPLICATE_API_TOKEN
+// ✅ Servir el `index.html` cuando accedan a la raíz `/`
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
 
-// Ruta POST para generar imagen
+// ✅ Configuración de la API de Replicate
+const replicate = new Replicate({
+  auth: process.env.REPLICATE_API_TOKEN,
+});
+
+// ✅ Ruta POST para generar imagen
 app.post("/generate", async (req, res) => {
   try {
     const { respuestas, prompt } = req.body;
@@ -35,7 +42,7 @@ app.post("/generate", async (req, res) => {
 
     const prediction = await replicate.predictions.create({
       version: "ac732df83cea7fff18b8472768c88ad041fa750ff7682a21affe81863cbe77e4",
-      input: { prompt: finalPrompt }
+      input: { prompt: finalPrompt },
     });
 
     if (!prediction || !prediction.id) {
@@ -47,7 +54,7 @@ app.post("/generate", async (req, res) => {
 
     while (status !== "succeeded" && status !== "failed") {
       console.log(`Estado: ${status}, esperando...`);
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      await new Promise((resolve) => setTimeout(resolve, 3000));
       const updatedPrediction = await replicate.predictions.get(prediction.id);
       status = updatedPrediction.status;
       if (status === "succeeded" && updatedPrediction.output && updatedPrediction.output.length > 0) {
@@ -68,10 +75,10 @@ app.post("/generate", async (req, res) => {
   }
 });
 
-// Configuración de puerto y host para Railway
+// ✅ Configuración del puerto y host
 const port = process.env.PORT || 8080;
-const host = '0.0.0.0';  // <-- IMPORTANTE para Railway
+const host = "0.0.0.0"; // Necesario para Railway
 
 app.listen(port, host, () => {
-    console.log(`🚀 Servidor corriendo en http://${host}:${port}`);
+  console.log(`🚀 Servidor corriendo en http://${host}:${port}`);
 });

@@ -3,32 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Imágenes Motivacionales</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Generador de Imágenes</title>
+    <script defer src="script.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input, button { margin: 5px; padding: 10px; width: 80%; }
+        img { margin-top: 20px; max-width: 100%; display: none; }
+    </style>
 </head>
 <body>
-    <h1>Generador de Imágenes Motivacionales</h1>
-    <form id="imageForm">
-        <label for="alimentacion">Alimentación:</label>
-        <input type="text" id="alimentacion" required>
-        
-        <label for="actividad">Actividad Física:</label>
-        <input type="text" id="actividad" required>
-
-        <label for="salud">Salud Mental:</label>
-        <input type="text" id="salud" required>
-
-        <label for="descanso">Descanso:</label>
-        <input type="text" id="descanso" required>
-
-        <button type="submit">Generar Imagen</button>
-    </form>
-
-    <div id="resultado">
-        <h2>Imagen Generada:</h2>
-        <img id="imageOutput" src="" alt="Imagen generada" style="display:none;">
-    </div>
-
-    <script src="script.js"></script>
+    <h1>Generador de Imágenes de Bienestar</h1>
+    <p>Ingresa tus respuestas para generar una imagen motivacional:</p>
+    <input type="text" id="alimentacion" placeholder="Alimentación (Ej: Saludable)">
+    <input type="text" id="actividad" placeholder="Actividad Física (Ej: Yoga)">
+    <input type="text" id="salud" placeholder="Salud Mental (Ej: Meditación)">
+    <input type="text" id="descanso" placeholder="Descanso (Ej: 8 horas de sueño)">
+    <button onclick="generarImagen()">Generar Imagen</button>
+    <p id="mensaje"></p>
+    <img id="imagenGenerada">
 </body>
 </html>
