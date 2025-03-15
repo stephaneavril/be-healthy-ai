@@ -25,21 +25,21 @@ app.post("/generate", async (req, res) => {
       return res.status(400).json({ error: "Se requieren 4 respuestas para generar la imagen" });
     }
 
-    const finalPrompt = `✨ Ilustración digital de alta calidad que representa un **estilo de vida saludable y equilibrado** con una composición armoniosa y estéticamente agradable.
+    const finalPrompt = ` Ilustración digital de alta calidad que representa un **estilo de vida saludable y equilibrado** con una composición armoniosa y estéticamente agradable.
 
 🔹 **Escena principal:** Un individuo radiante, feliz y lleno de vitalidad en un entorno natural y acogedor.
 🔹 **Colores:** Tonos cálidos y relajantes que transmiten bienestar, sin elementos caóticos ni saturados.
 🔹 **Elementos integrados sutilmente según las respuestas del usuario:**
-   - 🍏 **Alimentación:** ${respuestas[0]} - Representado de manera realista, como una fruta fresca en la mano o en una mesa de desayuno soleada.
-   - 💪 **Ejercicio:** ${respuestas[1]} - La persona en la imagen muestra vitalidad y energía, con una postura segura y empoderada.
-   - 🧘‍♂️ **Salud Mental:** ${respuestas[2]} - Expresión facial relajada, con una sensación de calma y equilibrio en la escena.
-   - 😴 **Descanso:** ${respuestas[3]} - Sugiere un ambiente de paz, con luz cálida, un entorno fresco y una sensación de recuperación.
+   -  **Alimentación:** ${respuestas[0]} - Representado de manera realista, como una fruta fresca en la mano o en una mesa de desayuno soleada.
+   -  **Ejercicio:** ${respuestas[1]} - La persona en la imagen muestra vitalidad y energía, con una postura segura y empoderada.
+   -  **Salud Mental:** ${respuestas[2]} - Expresión facial relajada, con una sensación de calma y equilibrio en la escena.
+   -  **Descanso:** ${respuestas[3]} - Sugiere un ambiente de paz, con luz cálida, un entorno fresco y una sensación de recuperación.
 
 🖌 **Estilo de la imagen:**  
 Debe parecer una pintura digital realista o ilustración inspiradora con un **único sujeto central**.  
 Evitar formas abstractas, imágenes deformadas o composiciones caóticas.
 
-🚀 **Resultado esperado:**  
+**Resultado esperado:**  
 Una **imagen única y motivacional** que transmita paz, equilibrio y bienestar, con una persona feliz disfrutando de su vida saludable en un entorno positivo.`;
 
     🚀 **Requisitos Técnicos**:
