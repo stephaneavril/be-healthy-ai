@@ -18,3 +18,6 @@
   "author": "Stephane Avril",
   "license": "ISC"
 }
+"scripts": {
+  "start": "cd backend && node server.js"
+}
