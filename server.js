@@ -25,18 +25,18 @@ app.post("/generate", async (req, res) => {
       return res.status(400).json({ error: "Se requieren 4 respuestas para generar la imagen" });
     }
 
-    const finalPrompt = `Crea una imagen digital **motivacional y armoniosa** que represente el bienestar en su máxima expresión. 
-Debe incluir a una persona radiante y saludable en un ambiente cálido y acogedor. 
-La imagen debe reflejar **energía positiva y equilibrio** con los siguientes elementos integrados de manera natural:
-
-- **Alimentación saludable** (${respuestas[0]}) representada con colores vibrantes y comida fresca en un plato bien presentado.
-- **Actividad física** (${respuestas[1]}) reflejada en una postura o movimiento dinámico que transmita vitalidad.
-- **Salud mental** (${respuestas[2]}) visualizada a través de una expresión de calma, naturaleza y equilibrio.
-- **Descanso reparador** (${respuestas[3]}) con una atmósfera relajante, luz suave y un ambiente acogedor.
-
-La imagen debe ser **armoniosa y estética**, con colores equilibrados y una composición fluida, evitando el desorden. 
-Debe reflejar **felicidad, paz y bienestar** en una sola imagen.`;
-
+    const finalPrompt = `Ilustración digital de una persona feliz, radiante y saludable en un entorno armonioso y natural. 
+    La imagen debe reflejar **bienestar, calma y motivación**, con colores equilibrados y composición estética. 
+    Debe incluir los siguientes elementos representados de manera fluida en una sola imagen:
+    
+    - **Alimentación saludable:** (${respuestas[0]}) con frutas y verduras frescas, servidas en un plato bien presentado.
+    - **Actividad física:** (${respuestas[1]}) reflejada en una postura activa, como yoga o un paseo al aire libre.
+    - **Salud mental:** (${respuestas[2]}) expresada con un rostro sereno y un entorno natural relajante.
+    - **Descanso reparador:** (${respuestas[3]}) con una atmósfera acogedora y luz suave.
+    
+    La imagen debe **evitar un collage** y en su lugar **mostrar una escena unificada** donde todo fluya naturalmente. 
+    Debe ser una imagen limpia, de calidad profesional, inspiradora y sin elementos irreales o deformes.`;
+    
 
     console.log(`Generando imagen para: "${finalPrompt}"`);
 
