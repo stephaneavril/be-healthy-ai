@@ -2,9 +2,9 @@
   "name": "be-healthy-ai",
   "version": "1.0.0",
   "description": "Generador de imágenes motivacionales basado en respuestas de los empleados",
-  "main": "backend/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
