@@ -25,17 +25,27 @@ app.post("/generate", async (req, res) => {
       return res.status(400).json({ error: "Se requieren 4 respuestas para generar la imagen" });
     }
 
-    const finalPrompt = `Ilustración digital de una persona feliz, radiante y saludable en un entorno armonioso y natural. 
-    La imagen debe reflejar **bienestar, calma y motivación**, con colores equilibrados y composición estética. 
-    Debe incluir los siguientes elementos representados de manera fluida en una sola imagen:
+    const finalPrompt = `Una ilustración digital inspiradora y motivacional que represente un estilo de vida equilibrado y feliz. 
+    La imagen debe mostrar un ambiente armonioso con colores suaves y naturales, reflejando **paz, bienestar y alegría**. 
     
-    - **Alimentación saludable:** (${respuestas[0]}) con frutas y verduras frescas, servidas en un plato bien presentado.
-    - **Actividad física:** (${respuestas[1]}) reflejada en una postura activa, como yoga o un paseo al aire libre.
-    - **Salud mental:** (${respuestas[2]}) expresada con un rostro sereno y un entorno natural relajante.
-    - **Descanso reparador:** (${respuestas[3]}) con una atmósfera acogedora y luz suave.
+    🎨 **Concepto**:
+    Se debe visualizar **una persona radiante y feliz** disfrutando de su bienestar, rodeada de un entorno positivo. 
+    Cada elemento debe integrarse de manera fluida en la escena para transmitir una sensación de plenitud.
     
-    La imagen debe **evitar un collage** y en su lugar **mostrar una escena unificada** donde todo fluya naturalmente. 
-    Debe ser una imagen limpia, de calidad profesional, inspiradora y sin elementos irreales o deformes.`;
+    ✨ **Elementos Clave**:
+    - **Alimentación:** ${respuestas[0]} - Representado por una comida balanceada y apetitosa en la escena.
+    - **Actividad Física:** ${respuestas[1]} - Expresado a través de una postura activa y enérgica, como yoga, caminata o estiramientos.
+    - **Salud Mental:** ${respuestas[2]} - Reflejado con una expresión relajada y un fondo sereno que inspire calma.
+    - **Descanso:** ${respuestas[3]} - Sugiere una atmósfera acogedora y reparadora, con luz cálida y elementos que evocan tranquilidad.
+    
+    🚀 **Requisitos Técnicos**:
+    - **UNA SOLA IMAGEN**, sin collage ni elementos superpuestos.
+    - **Colores cálidos y naturales**, evitando tonos caóticos.
+    - **Estética profesional y realista**, sin deformaciones.
+    - **Sensación de armonía**, evitando elementos dispersos o confusos.
+    
+    📌 La imagen final debe evocar **motivación, bienestar y alegría**, ideal para inspirar a las personas a mejorar su calidad de vida.`;
+    
     
 
     console.log(`Generando imagen para: "${finalPrompt}"`);
