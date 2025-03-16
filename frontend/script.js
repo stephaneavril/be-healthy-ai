@@ -1,60 +1,54 @@
-document.getElementById("generateButton").addEventListener("click", async function() {
-    const alimentacion = document.getElementById("alimentacion").value;
-    const ejercicio = document.getElementById("ejercicio").value;
-    const saludMental = document.getElementById("saludMental").value;
-    const descanso = document.getElementById("descanso").value;
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("generarBtn").addEventListener("click", generarImagen);
+    document.getElementById("imprimirBtn").addEventListener("click", imprimirImagen);
+});
 
-    if (!alimentacion || !ejercicio || !saludMental || !descanso) {
-        alert("Por favor, completa todos los campos.");
+async function generarImagen() {
+    const respuestas = [
+        document.getElementById("alimentacion").value,
+        document.getElementById("ejercicio").value,
+        document.getElementById("mental").value,
+        document.getElementById("descanso").value
+    ];
+
+    if (!respuestas.every(respuesta => respuesta.trim() !== "")) {
+        alert("Por favor, llena todos los campos antes de generar la imagen.");
         return;
     }
 
-    const statusMessage = document.getElementById("statusMessage");
-    const generatedImage = document.getElementById("generatedImage");
-    const printButton = document.getElementById("printButton");
-
-    statusMessage.innerText = "Generando imagen... ⏳";
-    generatedImage.style.display = "none";
-    printButton.style.display = "none";
+    document.getElementById("resultado").innerHTML = "Generando imagen... ⏳";
 
     try {
         const response = await fetch("/generate", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ respuestas: [alimentacion, ejercicio, saludMental, descanso] })
+            body: JSON.stringify({ respuestas })
         });
 
         const data = await response.json();
 
         if (data.image_url) {
-            statusMessage.innerText = "Imagen generada con éxito ✅";
-            generatedImage.src = data.image_url;
-            generatedImage.style.display = "block";
-            printButton.style.display = "inline-block";
+            document.getElementById("resultado").innerHTML = `
+                <p>Imagen generada con éxito ✅</p>
+                <img id="imagenGenerada" src="${data.image_url}" alt="Imagen de Bienestar">
+            `;
         } else {
-            statusMessage.innerText = "Error al generar la imagen ❌";
+            document.getElementById("resultado").innerHTML = "<p>Error al generar la imagen ❌</p>";
         }
     } catch (error) {
-        console.error("Error:", error);
-        statusMessage.innerText = "Error en la solicitud ❌";
+        console.error("Error en la generación de la imagen:", error);
+        document.getElementById("resultado").innerHTML = "<p>Ocurrió un error. Inténtalo de nuevo.</p>";
     }
-});
+}
 
-document.getElementById("printButton").addEventListener("click", function() {
-    const image = document.getElementById("generatedImage");
-    if (image) {
-        const printWindow = window.open("", "_blank");
-        printWindow.document.write(`
-            <html>
-            <head><title>Imprimir Imagen</title></head>
-            <body style="text-align:center;">
-                <img src="${image.src}" style="width:100%; max-width:800px;">
-                <script>window.onload = function() { window.print(); }<\/script>
-            </body>
-            </html>
-        `);
-        printWindow.document.close();
+function imprimirImagen() {
+    const imagen = document.getElementById("imagenGenerada");
+    if (imagen) {
+        const ventana = window.open("", "_blank");
+        ventana.document.write(`<img src="${imagen.src}" style="width:100%;">`);
+        ventana.document.write("<script>window.print();<\/script>");
+        ventana.document.close();
     } else {
-        alert("No hay imagen para imprimir.");
+        alert("Genera una imagen primero.");
     }
-});
+}

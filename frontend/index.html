@@ -36,21 +36,9 @@
     <input type="text" id="mental" placeholder="Ejemplo: relajación, meditación">
     <input type="text" id="descanso" placeholder="Ejemplo: dormir bien, descanso">
 
-    <button onclick="generarImagen()">Generar Imagen</button>
-    <button onclick="imprimirImagen()">🖨️ Imprimir Imagen</button>
+    <button id="generarBtn">Generar Imagen</button>
+    <button id="imprimirBtn">🖨️ Imprimir Imagen</button>
 
     <div id="resultado"></div>
-
-    <script>
-        async function generarImagen() {
-            const respuestas = [
-                document.getElementById("alimentacion").value,
-                document.getElementById("ejercicio").value,
-                document.getElementById("mental").value,
-                document.getElementById("descanso").value
-            ];
-
-            document.getElementById("resultado").innerHTML = "Generando imagen... ⏳";
-
-            const response = await fetch("/generate", {
-       
+</body>
+</html>
