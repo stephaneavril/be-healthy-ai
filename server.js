@@ -25,24 +25,30 @@ app.post("/generate", async (req, res) => {
       return res.status(400).json({ error: "Se requieren 4 respuestas para generar la imagen" });
     }
 
+    // Construcción del prompt más preciso
     const finalPrompt = `
-      Una ilustración vectorial limpia y vibrante que representa hábitos de vida saludable.
-      **Características de la imagen:**
-      - **Personas realizando actividades saludables** con expresiones alegres y motivadoras.
-      - **Diseño moderno en estilo infografía**, con iconos claros y bien organizados.
-      - **Colores vivos y amigables**, con predominancia de tonos azules, verdes y naranjas.
-      - **Elementos incluidos según respuestas del usuario**:
-        - **Alimentación:** ${respuestas[0]} representado con frutas frescas, ensaladas o jugos naturales.
-        - **Ejercicio:** ${respuestas[1]} representado con personas activas (ejemplo: corriendo, en bicicleta, haciendo yoga).
-        - **Salud Mental:** ${respuestas[2]} representado con meditación, relajación o respiración profunda.
-        - **Descanso:** ${respuestas[3]} representado con un ambiente tranquilo (ejemplo: persona durmiendo cómodamente).
+      Una ilustración digital moderna y minimalista que representa hábitos de bienestar y salud. 
+      La imagen debe ser clara, motivacional y con una composición equilibrada.
 
-      **Formato y estilo:**
-      - **UNA SOLA IMAGEN**, sin collage ni composiciones desordenadas.
-      - **Diseño educativo, organizado y claro**, ideal para uso en materiales de bienestar.
-      - **Evitar formas abstractas o imágenes deformadas**.
+      🎨 **Características clave:**
+      - Estilo **vectorial plano** (flat design), similar a infografías modernas.
+      - **Colores vibrantes y organizados** en tonos cálidos y naturales.
+      - **Elementos bien alineados**, sin composiciones desordenadas ni superposiciones extrañas.
+      - **Sin texto ni palabras generadas automáticamente.**
       
-      La imagen debe parecer una infografía educativa clara y atractiva, reflejando equilibrio, energía y bienestar.
+      🔹 **Elementos incluidos según respuestas del usuario:**
+      - **Alimentación:** ${respuestas[0]} representado con frutas frescas, platos saludables o jugos naturales.
+      - **Ejercicio:** ${respuestas[1]} representado con personas corriendo, en bicicleta o haciendo yoga.
+      - **Salud Mental:** ${respuestas[2]} representado con una persona en estado de meditación o tranquilidad.
+      - **Descanso:** ${respuestas[3]} representado con un ambiente relajante, como una persona descansando plácidamente.
+
+      🌿 **Formato y estilo:**
+      - **UNA SOLA IMAGEN en alta calidad.**
+      - **Diseño limpio, sin ruido visual.**
+      - **Claridad y armonía en la composición.**
+      - **Evitar formas abstractas o deformaciones.**
+      
+      ✨ La imagen final debe reflejar un **estilo de vida saludable y armonioso**, ideal para inspirar a las personas a mejorar su bienestar.
     `;
 
     console.log(`Generando imagen para: "${finalPrompt}"`);
