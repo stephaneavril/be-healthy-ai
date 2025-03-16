@@ -26,28 +26,22 @@ app.post("/generate", async (req, res) => {
     }
 
     const finalPrompt = `
-    🎨 Una ilustración artística y motivacional que representa un estilo de vida saludable y equilibrado.
-    La imagen debe transmitir paz, bienestar y motivación, con un ambiente sereno y acogedor.
-
-    🌿 **Descripción de la imagen:**
-    - Un individuo enérgico y radiante, en un entorno natural con luz cálida y pacífica.
-    - Elementos clave basados en las respuestas del usuario:
-      - **Alimentación:** ${respuestas[0]} (ejemplo: frutas frescas sobre una mesa soleada).
-      - **Ejercicio:** ${respuestas[1]} (persona practicando yoga, corriendo o en movimiento).
-      - **Salud Mental:** ${respuestas[2]} (expresión de calma y conexión con la naturaleza).
-      - **Descanso:** ${respuestas[3]} (escena con sensación de relajación y armonía).
-
-    ✨ **Estilo artístico:**
-    - Pintura digital inspirada en arte espiritual y wellness.
-    - Colores suaves y cálidos para transmitir tranquilidad y equilibrio.
-    - Inspirado en ilustraciones de **Namaste, Mindfulness, Zen Art**.
-    - Enfoque en **energía positiva**, con símbolos de paz y armonía.
-    - **NO** imágenes hiperrealistas frías, **NO** figuras deformadas, **NO** collages.
-
-    🧘‍♀️ **Sensación final:**
-    - La imagen debe evocar **motivación, plenitud y un futuro brillante**.
-    - Transmitir **bienestar, equilibrio y una vida sana**.
-    - Una **única imagen** clara y armoniosa, sin elementos confusos.
+    Obra de arte digital inspiradora con un estilo artístico detallado.
+    La imagen representa a una persona en un estado de bienestar y equilibrio.
+    
+    **Elementos clave según las respuestas del usuario:**
+    - **Alimentación:** ${respuestas[0]} (Ejemplo: fruta fresca sobre una mesa iluminada por la luz del sol).
+    - **Ejercicio:** ${respuestas[1]} (Ejemplo: persona haciendo yoga en un entorno natural armonioso).
+    - **Salud Mental:** ${respuestas[2]} (Ejemplo: expresión facial de calma, ambiente de relajación).
+    - **Descanso:** ${respuestas[3]} (Ejemplo: una escena serena con colores suaves y cálidos).
+    
+    **Características del arte:**
+    - Estilo digital con detalles artísticos inspiradores.
+    - Colores suaves y cálidos que transmitan tranquilidad.
+    - Composición bien equilibrada, sin deformaciones.
+    - Inspirado en la energía del bienestar y la paz mental.
+    
+    **Debe generar una sola imagen con todos estos elementos en una composición armoniosa.**
     `;
 
     console.log(`Generando imagen para: "${finalPrompt}"`);
@@ -89,7 +83,7 @@ app.post("/generate", async (req, res) => {
 
 // Configuración de puerto y host para Railway
 const port = process.env.PORT || 8080;
-const host = '0.0.0.0';  // IMPORTANTE para Railway
+const host = '0.0.0.0';
 
 app.listen(port, host, () => {
     console.log(`🚀 Servidor corriendo en http://${host}:${port}`);

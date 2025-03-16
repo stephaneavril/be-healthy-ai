@@ -3,23 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Imágenes</title>
-    <script defer src="script.js"></script>
+    <title>Generador de Imágenes de Bienestar</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
-        input, button { margin: 5px; padding: 10px; width: 80%; }
-        img { margin-top: 20px; max-width: 100%; display: none; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        input, button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            width: 80%;
+            font-size: 16px;
+        }
+        img {
+            max-width: 100%;
+            margin-top: 20px;
+            display: none;
+        }
     </style>
 </head>
 <body>
+
     <h1>Generador de Imágenes de Bienestar</h1>
     <p>Ingresa tus respuestas para generar una imagen motivacional:</p>
-    <input type="text" id="alimentacion" placeholder="Alimentación (Ej: Saludable)">
-    <input type="text" id="actividad" placeholder="Actividad Física (Ej: Yoga)">
-    <input type="text" id="salud" placeholder="Salud Mental (Ej: Meditación)">
-    <input type="text" id="descanso" placeholder="Descanso (Ej: 8 horas de sueño)">
+
+    <input type="text" id="resp1" placeholder="Ej: Alimentación (manzana, ensalada)">
+    <input type="text" id="resp2" placeholder="Ej: Actividad física (yoga, correr)">
+    <input type="text" id="resp3" placeholder="Ej: Salud mental (meditación, lectura)">
+    <input type="text" id="resp4" placeholder="Ej: Descanso (dormir, relajación)">
+
     <button onclick="generarImagen()">Generar Imagen</button>
-    <p id="mensaje"></p>
-    <img id="imagenGenerada">
+    <br>
+
+    <h3 id="statusMessage" style="display:none;">Generando imagen... ⏳</h3>
+    <img id="generatedImage" src="" />
+
+    <button id="printButton" style="display: none;" onclick="printImage()">🖨️ Imprimir Imagen</button>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
