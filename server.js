@@ -26,25 +26,35 @@ app.post("/generate", async (req, res) => {
     }
 
     const finalPrompt = `
-    Una ilustración digital realista que representa un estilo de vida saludable y equilibrado.
-    La imagen debe transmitir bienestar, motivación y alegría.
+    📌 **Descripción General:**  
+    Una imagen digital **hiperrealista y vibrante** que representa un estilo de vida saludable y equilibrado.  
+    Debe evocar **motivación, bienestar y felicidad**, con una composición armoniosa y estética.
 
-    **Características clave:**
-    - **Persona feliz y radiante** en un entorno natural armonioso.
-    - **Colores cálidos y relajantes** que transmitan paz y bienestar.
-    - **Elementos clave** basados en las respuestas del usuario:
-      - **Alimentación:** ${respuestas[0]} (ejemplo: frutas frescas sobre una mesa soleada).
-      - **Ejercicio:** ${respuestas[1]} (persona enérgica en movimiento).
-      - **Salud Mental:** ${respuestas[2]} (expresión de calma y equilibrio).
-      - **Descanso:** ${respuestas[3]} (ambiente sereno y reconfortante).
+    ✅ **Escena Principal:**  
+    Un individuo radiante, lleno de vitalidad, disfrutando de un entorno natural y acogedor.  
+    Expresión de **alegría y paz interior**, con una postura empoderada.
 
-    **Requisitos Técnicos:**
-    - UNA SOLA IMAGEN clara y estética (NO collage).
-    - Sin deformaciones ni elementos extraños.
-    - Estilo ilustración realista y motivacional.
-    - Composición armoniosa y bien equilibrada.
+    🌿 **Elementos Clave según las respuestas del usuario:**  
+    - **Nutrición:** ${respuestas[0]} (ejemplo: manzana jugosa en la mano, smoothie nutritivo sobre una mesa soleada).  
+    - **Ejercicio:** ${respuestas[1]} (ejemplo: persona haciendo yoga con fondo de montaña, entrenamiento en un parque).  
+    - **Salud Mental:** ${respuestas[2]} (ejemplo: postura relajada, meditación con luz suave al amanecer).  
+    - **Descanso:** ${respuestas[3]} (ejemplo: ambiente de tranquilidad, luz cálida de atardecer, expresión serena).
 
-    La imagen debe inspirar a las personas a mejorar su bienestar y disfrutar de una vida sana y equilibrada.
+    🎨 **Estilo Visual y Técnicas Artísticas:**  
+    - **Arte digital fotorrealista,** inspirado en las mejores ilustraciones de Leonardo.Ai.  
+    - **Iluminación cinematográfica,** con un brillo natural y sombras suaves.  
+    - **Colores cálidos y vibrantes,** transmitiendo armonía y energía positiva.  
+    - **Detalles en alta resolución,** piel suave, texturas ricas, reflejos naturales.  
+
+    ⚠ **Instrucciones Claves para la IA:**  
+    - ❌ NO generar imágenes abstractas ni elementos extraños.  
+    - ❌ NO crear collage ni composiciones caóticas.  
+    - ✅ **UNA SOLA IMAGEN**, sin deformaciones ni errores anatómicos.  
+    - ✅ **Aspecto natural y humano, sin exageraciones o poses artificiales.**  
+    - ✅ **Equilibrio entre arte digital y realismo.**
+
+    🎯 **Resultado Esperado:**  
+    Una imagen que inspire a las personas a adoptar hábitos saludables, mostrando un estilo de vida **pleno y en equilibrio.**
     `;
 
     console.log(`Generando imagen para: "${finalPrompt}"`);
