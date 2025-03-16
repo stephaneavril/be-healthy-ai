@@ -25,30 +25,26 @@ app.post("/generate", async (req, res) => {
       return res.status(400).json({ error: "Se requieren 4 respuestas para generar la imagen" });
     }
 
-    // Construcción del prompt más preciso
+    // Nuevo prompt basado en las imágenes de referencia
     const finalPrompt = `
-      Una ilustración digital moderna y minimalista que representa hábitos de bienestar y salud. 
-      La imagen debe ser clara, motivacional y con una composición equilibrada.
+    Una ilustración digital colorida y optimista que representa un estilo de vida saludable y activo. 
+    La escena debe ser inspiradora y mostrar una combinación de elementos saludables en un diseño moderno y armonioso.
 
-      🎨 **Características clave:**
-      - Estilo **vectorial plano** (flat design), similar a infografías modernas.
-      - **Colores vibrantes y organizados** en tonos cálidos y naturales.
-      - **Elementos bien alineados**, sin composiciones desordenadas ni superposiciones extrañas.
-      - **Sin texto ni palabras generadas automáticamente.**
-      
-      🔹 **Elementos incluidos según respuestas del usuario:**
-      - **Alimentación:** ${respuestas[0]} representado con frutas frescas, platos saludables o jugos naturales.
-      - **Ejercicio:** ${respuestas[1]} representado con personas corriendo, en bicicleta o haciendo yoga.
-      - **Salud Mental:** ${respuestas[2]} representado con una persona en estado de meditación o tranquilidad.
-      - **Descanso:** ${respuestas[3]} representado con un ambiente relajante, como una persona descansando plácidamente.
+    **Elementos Clave:**
+    - Un grupo de personas felices realizando actividades saludables en un entorno amigable.
+    - **Alimentación:** ${respuestas[0]}, representado de manera clara y atractiva (ejemplo: frutas, ensaladas, alimentos frescos).
+    - **Ejercicio:** ${respuestas[1]}, mostrado de manera dinámica (ejemplo: corriendo, haciendo yoga, levantando pesas).
+    - **Bienestar mental:** ${respuestas[2]}, con posturas relajadas o actividades como meditación.
+    - **Descanso:** ${respuestas[3]}, en un contexto pacífico (ejemplo: descanso en la naturaleza, momentos de relajación).
 
-      🌿 **Formato y estilo:**
-      - **UNA SOLA IMAGEN en alta calidad.**
-      - **Diseño limpio, sin ruido visual.**
-      - **Claridad y armonía en la composición.**
-      - **Evitar formas abstractas o deformaciones.**
-      
-      ✨ La imagen final debe reflejar un **estilo de vida saludable y armonioso**, ideal para inspirar a las personas a mejorar su bienestar.
+    **Estilo Visual:**
+    - Ilustración en vector art, con colores brillantes y armoniosos.
+    - Fondos suaves y composiciones bien equilibradas.
+    - Elementos bien definidos, sin distorsiones ni abstracciones extrañas.
+    - Un solo cuadro, sin collage ni múltiples imágenes.
+
+    **Objetivo:**
+    La imagen debe inspirar hábitos saludables y bienestar, con un enfoque motivacional y aspiracional.
     `;
 
     console.log(`Generando imagen para: "${finalPrompt}"`);
@@ -90,7 +86,7 @@ app.post("/generate", async (req, res) => {
 
 // Configuración de puerto y host para Railway
 const port = process.env.PORT || 8080;
-const host = '0.0.0.0';
+const host = '0.0.0.0';  // IMPORTANTE para Railway
 
 app.listen(port, host, () => {
     console.log(`🚀 Servidor corriendo en http://${host}:${port}`);

@@ -4,69 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generador de Imágenes de Bienestar</title>
+    <script defer src="script.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        input, button { margin: 10px; padding: 10px; width: 80%; max-width: 400px; }
-        img { max-width: 80%; height: auto; margin-top: 20px; }
-        .hidden { display: none; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        img {
+            margin-top: 20px;
+            max-width: 80%;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
-
     <h1>Generador de Imágenes de Bienestar</h1>
     <p>Ingresa tus respuestas para generar una imagen motivacional:</p>
 
-    <input type="text" id="alimentacion" placeholder="Ejemplo: Manzana, Ensalada">
-    <input type="text" id="ejercicio" placeholder="Ejemplo: Yoga, Correr">
-    <input type="text" id="saludMental" placeholder="Ejemplo: Meditación, Relajación">
-    <input type="text" id="descanso" placeholder="Ejemplo: Dormir, Siesta">
-    
-    <button onclick="generarImagen()">Generar Imagen</button>
-    <button id="printBtn" class="hidden" onclick="imprimirImagen()">🖨️ Imprimir Imagen</button>
+    <input type="text" id="alimentacion" placeholder="Ejemplo: frutas, ensalada">
+    <input type="text" id="ejercicio" placeholder="Ejemplo: correr, yoga">
+    <input type="text" id="mental" placeholder="Ejemplo: relajación, meditación">
+    <input type="text" id="descanso" placeholder="Ejemplo: dormir bien, descanso">
 
-    <h3 id="status" class="hidden">Generando imagen...</h3>
-    <img id="resultado" class="hidden" alt="Imagen Generada">
+    <button onclick="generarImagen()">Generar Imagen</button>
+    <button onclick="imprimirImagen()">🖨️ Imprimir Imagen</button>
+
+    <div id="resultado"></div>
 
     <script>
         async function generarImagen() {
-            document.getElementById("status").classList.remove("hidden");
-            document.getElementById("printBtn").classList.add("hidden");
-            document.getElementById("resultado").classList.add("hidden");
-
             const respuestas = [
                 document.getElementById("alimentacion").value,
                 document.getElementById("ejercicio").value,
-                document.getElementById("saludMental").value,
+                document.getElementById("mental").value,
                 document.getElementById("descanso").value
             ];
 
+            document.getElementById("resultado").innerHTML = "Generando imagen... ⏳";
+
             const response = await fetch("/generate", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ respuestas })
-            });
-
-            const data = await response.json();
-
-            if (data.image_url) {
-                document.getElementById("resultado").src = data.image_url;
-                document.getElementById("resultado").classList.remove("hidden");
-                document.getElementById("printBtn").classList.remove("hidden");
-            } else {
-                alert("Error al generar la imagen");
-            }
-
-            document.getElementById("status").classList.add("hidden");
-        }
-
-        function imprimirImagen() {
-            const imgUrl = document.getElementById("resultado").src;
-            const ventanaImpresion = window.open('');
-            ventanaImpresion.document.write(`<img src="${imgUrl}" style="width:100%">`);
-            ventanaImpresion.document.close();
-            ventanaImpresion.print();
-        }
-    </script>
-
-</body>
-</html>
+       
