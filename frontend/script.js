@@ -1,22 +1,36 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("generarBtn").addEventListener("click", generarImagen);
     document.getElementById("imprimirBtn").addEventListener("click", imprimirImagen);
 });
 
 async function generarImagen() {
-    const respuestas = [
-        document.getElementById("alimentacion").value,
-        document.getElementById("ejercicio").value,
-        document.getElementById("mental").value,
-        document.getElementById("descanso").value
-    ];
+    document.getElementById("status").innerText = "Generando imagen...";
+    
+    // Obtiene los valores de los inputs
+    const input1 = document.getElementById("input1");
+    const input2 = document.getElementById("input2");
+    const input3 = document.getElementById("input3");
+    const input4 = document.getElementById("input4");
 
-    if (!respuestas.every(respuesta => respuesta.trim() !== "")) {
-        alert("Por favor, llena todos los campos antes de generar la imagen.");
+    // Verifica si los inputs existen
+    if (!input1 || !input2 || !input3 || !input4) {
+        console.error("Uno o más campos de entrada no se encontraron en el DOM.");
         return;
     }
 
-    document.getElementById("resultado").innerHTML = "Generando imagen... ⏳";
+    const respuestas = [
+        input1.value.trim(),
+        input2.value.trim(),
+        input3.value.trim(),
+        input4.value.trim()
+    ];
+
+    // Verifica si los valores están vacíos
+    if (respuestas.some(r => r === "")) {
+        alert("Todos los campos son obligatorios.");
+        document.getElementById("status").innerText = "❌ Por favor, completa todos los campos.";
+        return;
+    }
 
     try {
         const response = await fetch("/generate", {
@@ -26,29 +40,26 @@ async function generarImagen() {
         });
 
         const data = await response.json();
-
         if (data.image_url) {
-            document.getElementById("resultado").innerHTML = `
-                <p>Imagen generada con éxito ✅</p>
-                <img id="imagenGenerada" src="${data.image_url}" alt="Imagen de Bienestar">
-            `;
+            document.getElementById("outputImage").src = data.image_url;
+            document.getElementById("status").innerText = "✅ Imagen generada con éxito";
         } else {
-            document.getElementById("resultado").innerHTML = "<p>Error al generar la imagen ❌</p>";
+            throw new Error("No se pudo obtener la imagen");
         }
     } catch (error) {
-        console.error("Error en la generación de la imagen:", error);
-        document.getElementById("resultado").innerHTML = "<p>Ocurrió un error. Inténtalo de nuevo.</p>";
+        console.error("Error generando la imagen:", error);
+        document.getElementById("status").innerText = "❌ Error generando la imagen";
     }
 }
 
 function imprimirImagen() {
-    const imagen = document.getElementById("imagenGenerada");
-    if (imagen) {
-        const ventana = window.open("", "_blank");
-        ventana.document.write(`<img src="${imagen.src}" style="width:100%;">`);
-        ventana.document.write("<script>window.print();<\/script>");
-        ventana.document.close();
+    const imageUrl = document.getElementById("outputImage").src;
+    if (imageUrl) {
+        const printWindow = window.open("");
+        printWindow.document.write(`<img src="${imageUrl}" style="width:100%">`);
+        printWindow.document.close();
+        printWindow.print();
     } else {
-        alert("Genera una imagen primero.");
+        alert("No hay imagen generada para imprimir.");
     }
 }

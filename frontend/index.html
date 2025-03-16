@@ -28,12 +28,17 @@
     <input id="input3" type="text" placeholder="Ejemplo: meditación">
     <input id="input4" type="text" placeholder="Ejemplo: dormir bien">
     <br>
-    <button onclick="generarImagen()">Generar Imagen</button>
-    <button onclick="imprimirImagen()">🖨 Imprimir Imagen</button>
+    <button id="generarBtn">Generar Imagen</button>
+    <button id="imprimirBtn">🖨 Imprimir Imagen</button>
     <p id="status"></p>
     <img id="outputImage" src="" alt="Imagen generada aparecerá aquí">
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("generarBtn").addEventListener("click", generarImagen);
+            document.getElementById("imprimirBtn").addEventListener("click", imprimirImagen);
+        });
+
         async function generarImagen() {
             document.getElementById("status").innerText = "Generando imagen...";
             const respuestas = [
@@ -43,17 +48,28 @@
                 document.getElementById("input4").value
             ];
 
-            const response = await fetch("/generate", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ respuestas })
-            });
+            if (respuestas.some(r => r.trim() === "")) {
+                alert("Todos los campos son obligatorios.");
+                document.getElementById("status").innerText = "❌ Por favor, completa todos los campos.";
+                return;
+            }
 
-            const data = await response.json();
-            if (data.image_url) {
-                document.getElementById("outputImage").src = data.image_url;
-                document.getElementById("status").innerText = "✅ Imagen generada con éxito";
-            } else {
+            try {
+                const response = await fetch("/generate", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ respuestas })
+                });
+
+                const data = await response.json();
+                if (data.image_url) {
+                    document.getElementById("outputImage").src = data.image_url;
+                    document.getElementById("status").innerText = "✅ Imagen generada con éxito";
+                } else {
+                    throw new Error("No se pudo obtener la imagen");
+                }
+            } catch (error) {
+                console.error("Error generando la imagen:", error);
                 document.getElementById("status").innerText = "❌ Error generando la imagen";
             }
         }
@@ -61,7 +77,7 @@
         function imprimirImagen() {
             const imageUrl = document.getElementById("outputImage").src;
             if (imageUrl) {
-                const printWindow = window.open("");
+                const printWindow = window.open("", "_blank");
                 printWindow.document.write(`<img src="${imageUrl}" style="width:100%">`);
                 printWindow.document.close();
                 printWindow.print();
