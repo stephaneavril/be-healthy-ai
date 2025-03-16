@@ -10,35 +10,65 @@
             font-family: Arial, sans-serif;
             text-align: center;
         }
-        input {
-            width: 80%;
-            padding: 10px;
-            margin: 5px;
-        }
-        button {
-            padding: 10px 20px;
+        input, button {
             margin: 10px;
-            cursor: pointer;
+            padding: 10px;
         }
         img {
+            width: 60%;
             margin-top: 20px;
-            max-width: 80%;
-            border-radius: 10px;
         }
     </style>
 </head>
 <body>
     <h1>Generador de Imágenes de Bienestar</h1>
     <p>Ingresa tus respuestas para generar una imagen motivacional:</p>
+    <input id="input1" type="text" placeholder="Ejemplo: fruta">
+    <input id="input2" type="text" placeholder="Ejemplo: correr">
+    <input id="input3" type="text" placeholder="Ejemplo: meditación">
+    <input id="input4" type="text" placeholder="Ejemplo: dormir bien">
+    <br>
+    <button onclick="generarImagen()">Generar Imagen</button>
+    <button onclick="imprimirImagen()">🖨 Imprimir Imagen</button>
+    <p id="status"></p>
+    <img id="outputImage" src="" alt="Imagen generada aparecerá aquí">
 
-    <input type="text" id="alimentacion" placeholder="Ejemplo: frutas, ensalada">
-    <input type="text" id="ejercicio" placeholder="Ejemplo: correr, yoga">
-    <input type="text" id="mental" placeholder="Ejemplo: relajación, meditación">
-    <input type="text" id="descanso" placeholder="Ejemplo: dormir bien, descanso">
+    <script>
+        async function generarImagen() {
+            document.getElementById("status").innerText = "Generando imagen...";
+            const respuestas = [
+                document.getElementById("input1").value,
+                document.getElementById("input2").value,
+                document.getElementById("input3").value,
+                document.getElementById("input4").value
+            ];
 
-    <button id="generarBtn">Generar Imagen</button>
-    <button id="imprimirBtn">🖨️ Imprimir Imagen</button>
+            const response = await fetch("/generate", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ respuestas })
+            });
 
-    <div id="resultado"></div>
+            const data = await response.json();
+            if (data.image_url) {
+                document.getElementById("outputImage").src = data.image_url;
+                document.getElementById("status").innerText = "✅ Imagen generada con éxito";
+            } else {
+                document.getElementById("status").innerText = "❌ Error generando la imagen";
+            }
+        }
+
+        function imprimirImagen() {
+            const imageUrl = document.getElementById("outputImage").src;
+            if (imageUrl) {
+                const printWindow = window.open("");
+                printWindow.document.write(`<img src="${imageUrl}" style="width:100%">`);
+                printWindow.document.close();
+                printWindow.print();
+            } else {
+                alert("No hay imagen generada para imprimir.");
+            }
+        }
+    </script>
 </body>
 </html>

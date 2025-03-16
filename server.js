@@ -25,26 +25,19 @@ app.post("/generate", async (req, res) => {
       return res.status(400).json({ error: "Se requieren 4 respuestas para generar la imagen" });
     }
 
-    // Nuevo prompt basado en las imágenes de referencia
     const finalPrompt = `
-    Una ilustración digital colorida y optimista que representa un estilo de vida saludable y activo. 
-    La escena debe ser inspiradora y mostrar una combinación de elementos saludables en un diseño moderno y armonioso.
+      Ilustración digital en **estilo vectorial moderno** y **diseño plano (flat design)** con colores vivos y vibrantes. 
+      Representa un estilo de vida saludable con los siguientes elementos:
+      - **Nutrición:** ${respuestas[0]} (Ejemplo: frutas, ensalada fresca, jugo natural).
+      - **Ejercicio:** ${respuestas[1]} (Ejemplo: persona corriendo, bicicleta, gimnasio).
+      - **Bienestar mental:** ${respuestas[2]} (Ejemplo: persona meditando, respiración profunda, yoga).
+      - **Descanso:** ${respuestas[3]} (Ejemplo: persona relajada en una hamaca, una luna con estrellas).
 
-    **Elementos Clave:**
-    - Un grupo de personas felices realizando actividades saludables en un entorno amigable.
-    - **Alimentación:** ${respuestas[0]}, representado de manera clara y atractiva (ejemplo: frutas, ensaladas, alimentos frescos).
-    - **Ejercicio:** ${respuestas[1]}, mostrado de manera dinámica (ejemplo: corriendo, haciendo yoga, levantando pesas).
-    - **Bienestar mental:** ${respuestas[2]}, con posturas relajadas o actividades como meditación.
-    - **Descanso:** ${respuestas[3]}, en un contexto pacífico (ejemplo: descanso en la naturaleza, momentos de relajación).
-
-    **Estilo Visual:**
-    - Ilustración en vector art, con colores brillantes y armoniosos.
-    - Fondos suaves y composiciones bien equilibradas.
-    - Elementos bien definidos, sin distorsiones ni abstracciones extrañas.
-    - Un solo cuadro, sin collage ni múltiples imágenes.
-
-    **Objetivo:**
-    La imagen debe inspirar hábitos saludables y bienestar, con un enfoque motivacional y aspiracional.
+      Características de la imagen:
+      - **Colores pastel y tonos suaves**, en un estilo moderno y amigable.
+      - **Diseño infográfico con íconos y elementos organizados** de manera clara.
+      - **Evitar detalles hiperrealistas o imágenes abstractas**.
+      - **Ambiente positivo y enérgico**, ideal para campañas de bienestar y motivación.
     `;
 
     console.log(`Generando imagen para: "${finalPrompt}"`);
