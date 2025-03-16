@@ -26,22 +26,27 @@ app.post("/generate", async (req, res) => {
     }
 
     const finalPrompt = `
-    Obra de arte digital inspiradora con un estilo artístico detallado.
-    La imagen representa a una persona en un estado de bienestar y equilibrio.
-    
-    **Elementos clave según las respuestas del usuario:**
-    - **Alimentación:** ${respuestas[0]} (Ejemplo: fruta fresca sobre una mesa iluminada por la luz del sol).
-    - **Ejercicio:** ${respuestas[1]} (Ejemplo: persona haciendo yoga en un entorno natural armonioso).
-    - **Salud Mental:** ${respuestas[2]} (Ejemplo: expresión facial de calma, ambiente de relajación).
-    - **Descanso:** ${respuestas[3]} (Ejemplo: una escena serena con colores suaves y cálidos).
-    
-    **Características del arte:**
-    - Estilo digital con detalles artísticos inspiradores.
-    - Colores suaves y cálidos que transmitan tranquilidad.
-    - Composición bien equilibrada, sin deformaciones.
-    - Inspirado en la energía del bienestar y la paz mental.
-    
-    **Debe generar una sola imagen con todos estos elementos en una composición armoniosa.**
+      Una ilustración digital en estilo vectorial, con colores vivos y líneas limpias, que represente hábitos de vida saludable de manera educativa y atractiva.
+      La imagen debe incluir:
+      - Un fondo blanco o claro, con iconos y elementos ilustrativos bien organizados.
+      - Una composición visual atractiva con personas en diferentes actividades saludables.
+      - **Elementos basados en las respuestas del usuario:**
+        - Alimentación: ${respuestas[0]}, representado con frutas, verduras o platos saludables.
+        - Ejercicio: ${respuestas[1]}, con una persona haciendo la actividad indicada (por ejemplo, yoga, ciclismo, correr).
+        - Salud Mental: ${respuestas[2]}, mostrando relajación o meditación.
+        - Descanso: ${respuestas[3]}, en un ambiente que refleje bienestar y recuperación.
+
+      **Estilo de la imagen:**
+      - **Vectorial y educativo**, similar a infografías de bienestar.
+      - **Colores vibrantes**, combinando tonos azules, verdes y naranjas.
+      - **Diseño claro y bien estructurado**, sin elementos abstractos ni distorsionados.
+
+      **Resultado esperado:**
+      - **UNA SOLA IMAGEN** con una composición balanceada.
+      - **Personas realizando actividades saludables** con expresiones alegres y motivadoras.
+      - **Un mensaje visual claro de bienestar y equilibrio**.
+
+      La imagen debe ser perfecta para ser usada en materiales educativos o promocionales.
     `;
 
     console.log(`Generando imagen para: "${finalPrompt}"`);
