@@ -26,27 +26,23 @@ app.post("/generate", async (req, res) => {
     }
 
     const finalPrompt = `
-      Una ilustración digital en estilo vectorial, con colores vivos y líneas limpias, que represente hábitos de vida saludable de manera educativa y atractiva.
-      La imagen debe incluir:
-      - Un fondo blanco o claro, con iconos y elementos ilustrativos bien organizados.
-      - Una composición visual atractiva con personas en diferentes actividades saludables.
-      - **Elementos basados en las respuestas del usuario:**
-        - Alimentación: ${respuestas[0]}, representado con frutas, verduras o platos saludables.
-        - Ejercicio: ${respuestas[1]}, con una persona haciendo la actividad indicada (por ejemplo, yoga, ciclismo, correr).
-        - Salud Mental: ${respuestas[2]}, mostrando relajación o meditación.
-        - Descanso: ${respuestas[3]}, en un ambiente que refleje bienestar y recuperación.
-
-      **Estilo de la imagen:**
-      - **Vectorial y educativo**, similar a infografías de bienestar.
-      - **Colores vibrantes**, combinando tonos azules, verdes y naranjas.
-      - **Diseño claro y bien estructurado**, sin elementos abstractos ni distorsionados.
-
-      **Resultado esperado:**
-      - **UNA SOLA IMAGEN** con una composición balanceada.
+      Una ilustración vectorial limpia y vibrante que representa hábitos de vida saludable.
+      **Características de la imagen:**
       - **Personas realizando actividades saludables** con expresiones alegres y motivadoras.
-      - **Un mensaje visual claro de bienestar y equilibrio**.
+      - **Diseño moderno en estilo infografía**, con iconos claros y bien organizados.
+      - **Colores vivos y amigables**, con predominancia de tonos azules, verdes y naranjas.
+      - **Elementos incluidos según respuestas del usuario**:
+        - **Alimentación:** ${respuestas[0]} representado con frutas frescas, ensaladas o jugos naturales.
+        - **Ejercicio:** ${respuestas[1]} representado con personas activas (ejemplo: corriendo, en bicicleta, haciendo yoga).
+        - **Salud Mental:** ${respuestas[2]} representado con meditación, relajación o respiración profunda.
+        - **Descanso:** ${respuestas[3]} representado con un ambiente tranquilo (ejemplo: persona durmiendo cómodamente).
 
-      La imagen debe ser perfecta para ser usada en materiales educativos o promocionales.
+      **Formato y estilo:**
+      - **UNA SOLA IMAGEN**, sin collage ni composiciones desordenadas.
+      - **Diseño educativo, organizado y claro**, ideal para uso en materiales de bienestar.
+      - **Evitar formas abstractas o imágenes deformadas**.
+      
+      La imagen debe parecer una infografía educativa clara y atractiva, reflejando equilibrio, energía y bienestar.
     `;
 
     console.log(`Generando imagen para: "${finalPrompt}"`);
