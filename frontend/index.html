@@ -4,44 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generador de Imágenes de Bienestar</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        input, button {
-            display: block;
-            margin: 10px auto;
-            padding: 10px;
-            width: 80%;
-            font-size: 16px;
-        }
-        img {
-            max-width: 100%;
-            margin-top: 20px;
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <h1>Generador de Imágenes de Bienestar</h1>
-    <p>Ingresa tus respuestas para generar una imagen motivacional:</p>
-
-    <input type="text" id="resp1" placeholder="Ej: Alimentación (manzana, ensalada)">
-    <input type="text" id="resp2" placeholder="Ej: Actividad física (yoga, correr)">
-    <input type="text" id="resp3" placeholder="Ej: Salud mental (meditación, lectura)">
-    <input type="text" id="resp4" placeholder="Ej: Descanso (dormir, relajación)">
-
-    <button onclick="generarImagen()">Generar Imagen</button>
-    <br>
-
-    <h3 id="statusMessage" style="display:none;">Generando imagen... ⏳</h3>
-    <img id="generatedImage" src="" />
-
-    <button id="printButton" style="display: none;" onclick="printImage()">🖨️ Imprimir Imagen</button>
+    <div class="container">
+        <h1>Generador de Imágenes de Bienestar</h1>
+        <p>Ingresa tus respuestas para generar una imagen motivacional:</p>
+        
+        <input type="text" id="alimentacion" placeholder="Ej: Fruta fresca">
+        <input type="text" id="ejercicio" placeholder="Ej: Yoga">
+        <input type="text" id="saludMental" placeholder="Ej: Meditación">
+        <input type="text" id="descanso" placeholder="Ej: Sueño reparador">
+        
+        <button id="generateButton">Generar Imagen</button>
+        
+        <div id="output">
+            <h3 id="statusMessage"></h3>
+            <img id="generatedImage" style="display:none;">
+        </div>
+        
+        <button id="printButton" style="display:none;">🖨️ Imprimir Imagen</button>
+    </div>
 
     <script src="script.js"></script>
-
 </body>
 </html>

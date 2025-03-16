@@ -1,72 +1,60 @@
-function generarImagen() {
-    const respuestas = [
-        document.getElementById("resp1").value,
-        document.getElementById("resp2").value,
-        document.getElementById("resp3").value,
-        document.getElementById("resp4").value
-    ];
+document.getElementById("generateButton").addEventListener("click", async function() {
+    const alimentacion = document.getElementById("alimentacion").value;
+    const ejercicio = document.getElementById("ejercicio").value;
+    const saludMental = document.getElementById("saludMental").value;
+    const descanso = document.getElementById("descanso").value;
 
-    if (respuestas.some(r => r.trim() === "")) {
-        alert("Por favor completa todas las respuestas antes de generar la imagen.");
+    if (!alimentacion || !ejercicio || !saludMental || !descanso) {
+        alert("Por favor, completa todos los campos.");
         return;
     }
 
-    document.getElementById("statusMessage").style.display = "block";
+    const statusMessage = document.getElementById("statusMessage");
+    const generatedImage = document.getElementById("generatedImage");
+    const printButton = document.getElementById("printButton");
 
-    fetch("/generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ respuestas }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById("statusMessage").style.display = "none";
+    statusMessage.innerText = "Generando imagen... ⏳";
+    generatedImage.style.display = "none";
+    printButton.style.display = "none";
+
+    try {
+        const response = await fetch("/generate", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ respuestas: [alimentacion, ejercicio, saludMental, descanso] })
+        });
+
+        const data = await response.json();
 
         if (data.image_url) {
-            const imageElement = document.getElementById("generatedImage");
-            imageElement.src = data.image_url;
-            imageElement.style.display = "block";
-
-            const printButton = document.getElementById("printButton");
-            printButton.style.display = "block";
+            statusMessage.innerText = "Imagen generada con éxito ✅";
+            generatedImage.src = data.image_url;
+            generatedImage.style.display = "block";
+            printButton.style.display = "inline-block";
         } else {
-            alert("Error al generar la imagen. Inténtalo de nuevo.");
+            statusMessage.innerText = "Error al generar la imagen ❌";
         }
-    })
-    .catch(error => {
-        document.getElementById("statusMessage").style.display = "none";
+    } catch (error) {
         console.error("Error:", error);
-        alert("Error en la conexión con el servidor.");
-    });
-}
-
-function printImage() {
-    const imageUrl = document.getElementById("generatedImage").src;
-    if (!imageUrl) {
-        alert("No hay imagen para imprimir.");
-        return;
+        statusMessage.innerText = "Error en la solicitud ❌";
     }
+});
 
-    const printWindow = window.open('', '_blank');
-    printWindow.document.write(`
-        <html>
-            <head>
-                <title>Impresión de Imagen</title>
-                <style>
-                    body { text-align: center; font-family: Arial, sans-serif; }
-                    img { max-width: 100%; height: auto; margin: 20px; }
-                </style>
-            </head>
-            <body>
-                <h2>Imagen Motivacional</h2>
-                <img src="${imageUrl}" />
-                <script>
-                    window.onload = function() {
-                        window.print();
-                    };
-                </script>
+document.getElementById("printButton").addEventListener("click", function() {
+    const image = document.getElementById("generatedImage");
+    if (image) {
+        const printWindow = window.open("", "_blank");
+        printWindow.document.write(`
+            <html>
+            <head><title>Imprimir Imagen</title></head>
+            <body style="text-align:center;">
+                <img src="${image.src}" style="width:100%; max-width:800px;">
+                <script>window.onload = function() { window.print(); }<\/script>
             </body>
-        </html>
-    `);
-    printWindow.document.close();
-}
+            </html>
+        `);
+        printWindow.document.close();
+    } else {
+        alert("No hay imagen para imprimir.");
+    }
+});
