@@ -25,36 +25,29 @@ app.post("/generate", async (req, res) => {
       return res.status(400).json({ error: "Se requieren 4 respuestas para generar la imagen" });
     }
 
+    // Construcción dinámica del prompt asegurando coherencia visual
     const finalPrompt = `
-    📌 **Descripción General:**  
-    Una imagen digital **hiperrealista y vibrante** que representa un estilo de vida saludable y equilibrado.  
-    Debe evocar **motivación, bienestar y felicidad**, con una composición armoniosa y estética.
+    Una ilustración digital ultra realista, inspiradora y motivacional que represente un estilo de vida saludable y equilibrado.
+    
+    📌 **Composición visual:**
+    - Un individuo radiante, enérgico y feliz, reflejando un estado de bienestar total.
+    - La imagen debe tener una estética **cálida, armoniosa y positiva**.
+    - Escena en un entorno natural o en un espacio sereno y reconfortante.
+    
+    📌 **Elementos clave a incluir según las respuestas:**
+    - Alimentación: **${respuestas[0]}** representado de forma visualmente atractiva, como un tazón de frutas frescas o un desayuno equilibrado.
+    - Actividad física: **${respuestas[1]}**, ilustrando a la persona en movimiento o en una postura activa.
+    - Salud mental: **${respuestas[2]}**, expresado en una actitud de calma, meditación o alegría genuina.
+    - Descanso: **${respuestas[3]}**, con un ambiente que sugiera tranquilidad, relajación y renovación.
 
-    ✅ **Escena Principal:**  
-    Un individuo radiante, lleno de vitalidad, disfrutando de un entorno natural y acogedor.  
-    Expresión de **alegría y paz interior**, con una postura empoderada.
+    📌 **Estilo de la ilustración:**
+    - Imagen **única**, sin collage ni elementos dispersos.
+    - **Composición bien equilibrada**, con un foco claro y sin elementos abstractos.
+    - Estilo cinematográfico con iluminación natural, evitando tonos artificiales o contrastes caóticos.
+    - **Rostros detallados y expresivos**, reflejando alegría, paz y vitalidad.
 
-    🌿 **Elementos Clave según las respuestas del usuario:**  
-    - **Nutrición:** ${respuestas[0]} (ejemplo: manzana jugosa en la mano, smoothie nutritivo sobre una mesa soleada).  
-    - **Ejercicio:** ${respuestas[1]} (ejemplo: persona haciendo yoga con fondo de montaña, entrenamiento en un parque).  
-    - **Salud Mental:** ${respuestas[2]} (ejemplo: postura relajada, meditación con luz suave al amanecer).  
-    - **Descanso:** ${respuestas[3]} (ejemplo: ambiente de tranquilidad, luz cálida de atardecer, expresión serena).
-
-    🎨 **Estilo Visual y Técnicas Artísticas:**  
-    - **Arte digital fotorrealista,** inspirado en las mejores ilustraciones de Leonardo.Ai.  
-    - **Iluminación cinematográfica,** con un brillo natural y sombras suaves.  
-    - **Colores cálidos y vibrantes,** transmitiendo armonía y energía positiva.  
-    - **Detalles en alta resolución,** piel suave, texturas ricas, reflejos naturales.  
-
-    ⚠ **Instrucciones Claves para la IA:**  
-    - ❌ NO generar imágenes abstractas ni elementos extraños.  
-    - ❌ NO crear collage ni composiciones caóticas.  
-    - ✅ **UNA SOLA IMAGEN**, sin deformaciones ni errores anatómicos.  
-    - ✅ **Aspecto natural y humano, sin exageraciones o poses artificiales.**  
-    - ✅ **Equilibrio entre arte digital y realismo.**
-
-    🎯 **Resultado Esperado:**  
-    Una imagen que inspire a las personas a adoptar hábitos saludables, mostrando un estilo de vida **pleno y en equilibrio.**
+    📌 **Resultado esperado:**
+    Una **imagen de alta calidad**, inspiradora y motivacional, que cualquier persona pueda identificar como un reflejo positivo de su bienestar.
     `;
 
     console.log(`Generando imagen para: "${finalPrompt}"`);
