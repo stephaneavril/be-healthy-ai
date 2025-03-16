@@ -25,29 +25,29 @@ app.post("/generate", async (req, res) => {
       return res.status(400).json({ error: "Se requieren 4 respuestas para generar la imagen" });
     }
 
-    // Construcción dinámica del prompt asegurando coherencia visual
     const finalPrompt = `
-    Una ilustración digital ultra realista, inspiradora y motivacional que represente un estilo de vida saludable y equilibrado.
-    
-    📌 **Composición visual:**
-    - Un individuo radiante, enérgico y feliz, reflejando un estado de bienestar total.
-    - La imagen debe tener una estética **cálida, armoniosa y positiva**.
-    - Escena en un entorno natural o en un espacio sereno y reconfortante.
-    
-    📌 **Elementos clave a incluir según las respuestas:**
-    - Alimentación: **${respuestas[0]}** representado de forma visualmente atractiva, como un tazón de frutas frescas o un desayuno equilibrado.
-    - Actividad física: **${respuestas[1]}**, ilustrando a la persona en movimiento o en una postura activa.
-    - Salud mental: **${respuestas[2]}**, expresado en una actitud de calma, meditación o alegría genuina.
-    - Descanso: **${respuestas[3]}**, con un ambiente que sugiera tranquilidad, relajación y renovación.
+    🎨 Una ilustración artística y motivacional que representa un estilo de vida saludable y equilibrado.
+    La imagen debe transmitir paz, bienestar y motivación, con un ambiente sereno y acogedor.
 
-    📌 **Estilo de la ilustración:**
-    - Imagen **única**, sin collage ni elementos dispersos.
-    - **Composición bien equilibrada**, con un foco claro y sin elementos abstractos.
-    - Estilo cinematográfico con iluminación natural, evitando tonos artificiales o contrastes caóticos.
-    - **Rostros detallados y expresivos**, reflejando alegría, paz y vitalidad.
+    🌿 **Descripción de la imagen:**
+    - Un individuo enérgico y radiante, en un entorno natural con luz cálida y pacífica.
+    - Elementos clave basados en las respuestas del usuario:
+      - **Alimentación:** ${respuestas[0]} (ejemplo: frutas frescas sobre una mesa soleada).
+      - **Ejercicio:** ${respuestas[1]} (persona practicando yoga, corriendo o en movimiento).
+      - **Salud Mental:** ${respuestas[2]} (expresión de calma y conexión con la naturaleza).
+      - **Descanso:** ${respuestas[3]} (escena con sensación de relajación y armonía).
 
-    📌 **Resultado esperado:**
-    Una **imagen de alta calidad**, inspiradora y motivacional, que cualquier persona pueda identificar como un reflejo positivo de su bienestar.
+    ✨ **Estilo artístico:**
+    - Pintura digital inspirada en arte espiritual y wellness.
+    - Colores suaves y cálidos para transmitir tranquilidad y equilibrio.
+    - Inspirado en ilustraciones de **Namaste, Mindfulness, Zen Art**.
+    - Enfoque en **energía positiva**, con símbolos de paz y armonía.
+    - **NO** imágenes hiperrealistas frías, **NO** figuras deformadas, **NO** collages.
+
+    🧘‍♀️ **Sensación final:**
+    - La imagen debe evocar **motivación, plenitud y un futuro brillante**.
+    - Transmitir **bienestar, equilibrio y una vida sana**.
+    - Una **única imagen** clara y armoniosa, sin elementos confusos.
     `;
 
     console.log(`Generando imagen para: "${finalPrompt}"`);
